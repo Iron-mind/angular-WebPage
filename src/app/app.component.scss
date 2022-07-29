@@ -42,5 +42,22 @@
 }
 
 
+.message-error{
+  color: red;
+  font-size: 1.2em;
+  opacity: 0;
+  &.visible{
+    opacity: 0.8;
+  }
+}
+
+.text-success{
+  color: green;
 
 
+}
+
+//un text-danger
+.text-danger{
+  color: red;
+}

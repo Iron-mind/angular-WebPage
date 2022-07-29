@@ -7,6 +7,15 @@ import { Product } from './component.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  register={
+    name: '',
+    email: '',
+    password: ''
+
+  }
+  widthImg:number=100;
+  heightImg= 100;
+  colorImg='red'
   title = 'my-store';
   products: Product[]=[{
     id: Math.random(),
@@ -52,8 +61,10 @@ export class AppComponent {
   };
   user={
     name: 'Juan',
-  }
+    avatar: 'https://pngimg.com/uploads/avatar/avatar_PNG48.png?i=1',
 
+  }
+  onRegister(){}
   addProduct(){
     this.products.push(this.product);
     this.product={
