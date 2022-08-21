@@ -14,7 +14,8 @@ export class ProductsComponent implements OnInit {
   products: Product[] = []//mockProducts.map(elem=>({...elem, price:+elem.price })) as Product[];
   myShoppingCart:Product[] = [];
   total=0
-
+  today= new Date()
+  date= new Date(2020,1,1)
   constructor(
     private storeService:StoreService,
     private productService:ProductsService

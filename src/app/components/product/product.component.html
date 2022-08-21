@@ -1,11 +1,10 @@
 
 <app-img [src]="product.image" descriptions="re"></app-img>
-<h2>nombre:{{product.title}}</h2>
+<h2>nombre:{{product.title|shortenText:20}}</h2>
 description:
-<p> {{product.description}} </p>
-
+<p> {{(product.description|shortenText:30)}} </p>
 <p>
-  precio: <span>{{product.price}}</span>
+  precio: <span>{{product.price|currency:'USD'}}</span>
 </p>
 
 <button (click)="addToCart()" class="button-5" >Añadir al carrito</button>
