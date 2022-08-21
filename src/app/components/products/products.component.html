@@ -1,11 +1,13 @@
 
 <p>hoy:{{today|date}}</p>
-<p>aquel dia: {{date|date:'yyyy/dd/MM'}}</p>
+<!--       |
+           v   una directiva         -->
+<p appHighlight >aquel dia: {{date|date:'yyyy/dd/MM'}}</p>
 La cantidad: {{myShoppingCart.length}}
 {{'TotTaL '|uppercase}}:{{total}}
 <div class="products--grid">
 
-  <app-product (addedProduct)="onAddToShoppingCard($event)" *ngFor="let p of products" [product]="p"></app-product>
+  <app-product class="product" (addedProduct)="onAddToShoppingCard($event)" *ngFor="let p of products" [product]="p"></app-product>
 
 </div>
 
