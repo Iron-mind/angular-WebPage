@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
+import { ProductsService } from 'src/app/services/products.service';
+import { StoreService } from 'src/app/services/store.service';
 import { mockProducts } from 'src/assets/mockdata';
 
 @Component({
@@ -9,40 +11,30 @@ import { mockProducts } from 'src/assets/mockdata';
 })
 
 export class ProductsComponent implements OnInit {
-  products: Product[] = mockProducts.map(elem=>({...elem, price:+elem.price })) as Product[];
+  products: Product[] = []//mockProducts.map(elem=>({...elem, price:+elem.price })) as Product[];
   myShoppingCart:Product[] = [];
   total=0
-  // [{
-  //   name: 'Product 1',
-  //   price: 333,
-  //   description: 'Eso es un producto',
-  //   image: './assets/imgs/product-1.jpg'
-  // },
-  // {
-  //   name: 'Product 2',
-  //   price: 4000,
-  //   description: ' Eso es otro producto',
-  //   image: './assets/imgs/product-1.jpg'
-  // },
-  // {
-  //   name: 'Product 2',
-  //   price: 4000,
-  //   description: ' Eso es otro producto',
-  //   image: './assets/imgs/product-1.jpg'
-  // }
-  // ]
-  constructor() { }
+
+  constructor(
+    private storeService:StoreService,
+    private productService:ProductsService
+    ) {
+
+      this.myShoppingCart = this.storeService.getMyShoppingCart()
+    }
 
   ngOnInit(): void {
+     this.productService.getAllProducts().subscribe(data=>{
+        this.products = data
+      console.log(data)
+      })
+
   }
 
-  calculateTotal(){
-    this.total = this.myShoppingCart.reduce((acc,curr)=>acc+curr.price,0)
-  }
   onAddToShoppingCard(product: Product){
 
-    this.myShoppingCart.push(product)
-    this.calculateTotal()
+    this.storeService.onAddToShoppingCard(product)
+    this.total = this.storeService.calculateTotal()
 
   }
 }
